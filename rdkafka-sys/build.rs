@@ -28,6 +28,9 @@ where
         args.join(" "),
         dir
     );
+    for (key, value) in env::vars() {
+        eprintln!("ENVVARS {}: {}", key, value);
+    }
     let ret = Command::new(cmd).current_dir(dir).args(args).status();
     match ret.map(|status| (status.success(), status.code())) {
         Ok((true, _)) => (),
