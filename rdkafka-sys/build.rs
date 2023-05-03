@@ -83,6 +83,9 @@ fn main() {
 
 #[cfg(not(feature = "cmake-build"))]
 fn build_librdkafka() {
+    env::set_var("CC", "musl-gcc");
+    env::set_var("CXX", "g++");
+    
     let mut configure_flags: Vec<String> = Vec::new();
 
     let mut cflags = Vec::new();
